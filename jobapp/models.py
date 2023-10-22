@@ -6,3 +6,6 @@ class Job(models.Model):
     salary=models.CharField(max_length=60)
     location=models.CharField(max_length=60)
     description=models.CharField(max_length=500)
+    
+    def __str__(self) :
+        return(f"{self.jobName}")

@@ -2,8 +2,10 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .forms import SignUpForm
+from .models import Job
 # Create your views here.
 def home(request):
+    jobs=Job.objects.all()
     if request.method =='POST':
         username=request.POST['username']
         password=request.POST['password']
@@ -17,7 +19,7 @@ def home(request):
             messages.success(request,'Error logging in')
             return redirect('home')
     else:
-        return render(request,'home.html',{})
+        return render(request,'home.html',{'jobs':jobs})
 def logout_users(request):
     logout(request)
     messages.success(request,"Logged out")

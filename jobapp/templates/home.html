@@ -2,7 +2,13 @@
 {% block content %}
 <div class='col-md-6 offset-md-3'>
     {% if user.is_authenticated %}
-    <h1>hello world</h1>
+    <h1>Jobs</h1>
+    {% if jobs %}
+        {% for job in jobs %}
+            
+            {{job}}<br>
+        {% endfor %}
+    {% endif %}
     {% else %}
     <h1>login</h1>
     <form method="POST" action="{% url 'home' %}">
