@@ -42,3 +42,11 @@ def register_user(request):
 		return render(request, 'register.html', {'form':form})
 
 	return render(request, 'register.html', {'form':form})
+
+def job_desc(request,pk):
+    if(request.user.is_authenticated):
+        job_record=Job.objects.get(id=pk)
+        return render(request,'job.html',{'job_description':job_record})
+    else:
+        messages.success(request,"Job Not Found")
+        return redirect('home')

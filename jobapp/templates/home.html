@@ -5,8 +5,8 @@
     <h1>Jobs</h1>
     {% if jobs %}
         {% for job in jobs %}
-            
-            {{job}}<br>
+            <a href="{% url "job" job.id %}">{{job}}</a>
+            <br>
         {% endfor %}
     {% endif %}
     {% else %}
