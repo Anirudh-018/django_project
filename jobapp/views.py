@@ -50,3 +50,13 @@ def job_desc(request,pk):
     else:
         messages.success(request,"Job Not Found")
         return redirect('home')
+
+def delete_job(request,pk):
+    if request.user.is_authenticated:
+        job=Job.objects.get(id=pk)
+        job.delete()
+        messages.success(request,"Deleted the job")
+        return redirect('home')
+    else:
+        messages.success(request,"Login first")
+        return redirect('home')
