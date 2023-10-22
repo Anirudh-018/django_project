@@ -6,7 +6,6 @@
     {% else %}
     <h1>login</h1>
     <form method="POST" action="{% url 'home' %}">
-        <form>
         {% csrf_token %}
         <div class="mb-3">
             <label>username</label>
@@ -18,7 +17,6 @@
         </div>
         <br>
         <button type="submit" class="btn btn-primary">Login</button>
-        </form>
     </form>
 </div>
 {% endif %}
