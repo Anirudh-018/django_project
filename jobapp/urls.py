@@ -7,5 +7,6 @@ urlpatterns=[
     path('register/',views.register_user,name='register'),
     path('job/<int:pk>',views.job_desc,name='job'),
     path('delete/<int:pk>',views.delete_job,name='delete'),
+    path('update/<int:pk>',views.update_job,name='update'),
     path('add/',views.add_job,name='add')
 ]

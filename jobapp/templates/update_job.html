@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Add Job</h1>
+<h1>Update Job</h1>
 <div class='col-md-6 offset-md-3'>
-    <form method="POST" action="{% url 'add' %}">
+    
+    <form method="POST" >
         {% csrf_token %}
         {{form.as_p}}
     </from>
     <br>
-    <button type="submit" class="btn btn-primary">Add Job</button>
+    <button type="submit" class="btn btn-primary">Update Job</button>
 </div>
 {% endblock %}

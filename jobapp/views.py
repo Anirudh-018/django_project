@@ -73,3 +73,15 @@ def add_job(request):
     else:
         messages.success(request,"Login first")
         return redirect('home')
+def update_job(request,pk):
+    if request.user.is_authenticated:
+        current_job=Job.objects.get(id=pk)
+        form=AddJobForm(request.POST or None,instance=current_job)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Job Updated")
+            return redirect('home')
+        return render(request,'update_job.html',{'form':form})
+    else:
+        messages.success(request,"Login first")
+        return redirect('home')
