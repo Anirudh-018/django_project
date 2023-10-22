@@ -2,6 +2,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
 
+from jobapp.models import Job
+
 class SignUpForm(UserCreationForm):
 	email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Email Address'}))
 	name = forms.CharField(label="", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Name'}))
@@ -33,11 +35,12 @@ class SignUpForm(UserCreationForm):
 
 
 # Create Add Record Form
-# class AddRecordForm(forms.ModelForm):
-# 	name = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"First Name", "class":"form-control"}), label="")
-# 	email = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Email", "class":"form-control"}), label="")
-# 	phone = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Phone", "class":"form-control"}), label="")
+class AddJobForm(forms.ModelForm):
+	jobName = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Job Name", "class":"form-control"}), label="")
+	salary = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Salary", "class":"form-control"}), label="")
+	location=forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Location", "class":"form-control"}), label="")
+	description = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={"placeholder":"Description", "class":"form-control"}), label="")
 	
-# 	class Meta:
-# 		model = Record
-# 		exclude = ("user",)
+	class Meta:
+		model=Job
+		exclude=('user',)

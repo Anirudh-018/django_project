@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-from .forms import SignUpForm
+from .forms import AddJobForm, SignUpForm
 from .models import Job
 # Create your views here.
 def home(request):
@@ -57,6 +57,19 @@ def delete_job(request,pk):
         job.delete()
         messages.success(request,"Deleted the job")
         return redirect('home')
+    else:
+        messages.success(request,"Login first")
+        return redirect('home')
+def add_job(request):
+    form=AddJobForm(request.POST or None)
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            if form.is_valid():
+                print(form)
+                add_job=form.save()
+                messages.success(request,"Record Added")
+                return redirect('home')
+        return render(request,'add_job.html',{"form":form})
     else:
         messages.success(request,"Login first")
         return redirect('home')
